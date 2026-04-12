@@ -1,0 +1,109 @@
+mqtt:
+  sensor:
+# AUTOPOLIV
+# Влажность почвы с датчика 1 Auto-poliv  
+    - unique_id: AP_humidity_1
+      name: "AP_humidity_1"
+      state_topic: "kvant/R22/BV/auto_poliv/sensor/data"
+      device_class: humidity
+      unit_of_measurement: "%"
+      value_template: "{{ value_json.humidity.sensor_1 }}"
+
+# Влажность почвы с датчика 2 Auto-poliv  
+    - unique_id: AP_humidity_2
+      name: "AP_humidity_2"
+      state_topic: "kvant/R22/BV/auto_poliv/sensor/data"
+      device_class: humidity
+      unit_of_measurement: "%"
+      value_template: "{{ value_json.humidity.sensor_2 }}"
+
+# Влажность почвы с датчика 3 Auto-poliv  
+    - unique_id: AP_humidity_3
+      name: "AP_humidity_3"
+      state_topic: "kvant/R22/BV/auto_poliv/sensor/data"
+      device_class: humidity
+      unit_of_measurement: "%"
+      value_template: "{{ value_json.humidity.sensor_3 }}"
+
+# Влажность почвы с датчика 4 Auto-poliv  
+    - unique_id: AP_humidity_4
+      name: "AP_humidity_4"
+      state_topic: "kvant/R22/BV/auto_poliv/sensor/data"
+      device_class: humidity
+      unit_of_measurement: "%"
+      value_template: "{{ value_json.humidity.sensor_4 }}"
+
+# Влажность почвы с датчика 5 Auto-poliv  
+    - unique_id: AP_humidity_5
+      name: "AP_humidity_5"
+      state_topic: "kvant/R22/BV/auto_poliv/sensor/data"
+      device_class: humidity
+      unit_of_measurement: "%"
+      value_template: "{{ value_json.humidity.sensor_5 }}"
+      
+# Температуры с датчика 1 Auto-poliv  
+    - unique_id: AP_temperature_1
+      name: "AP_temperature_1"
+      state_topic: "kvant/R22/BV/auto_poliv/sensor/data"
+      device_class: temperature
+      unit_of_measurement: "°C"
+      value_template: "{{ value_json.temperature.sensor_1 }}"
+      
+# Температуры с датчика 2 Auto-poliv  
+    - unique_id: AP_temperature_2
+      name: "AP_temperature_2"
+      state_topic: "kvant/R22/BV/auto_poliv/sensor/data"
+      device_class: temperature
+      unit_of_measurement: "°C"
+      value_template: "{{ value_json.temperature.sensor_2 }}"
+      
+# Температуры с датчика 3 Auto-poliv  
+    - unique_id: AP_temperature_3
+      name: "AP_temperature_3"
+      state_topic: "kvant/R22/BV/auto_poliv/sensor/data"
+      device_class: temperature
+      unit_of_measurement: "°C"
+      value_template: "{{ value_json.temperature.sensor_3 }}"
+# Влажность с DHT11 Auto-poliv 
+    - unique_id: AP_DHT11_hum
+      name: "AP_DHT11_h"
+      state_topic: "kvant/R22/BV/auto_poliv/sensor/data"
+      device_class: humidity
+      unit_of_measurement: "%"
+      value_template: "{{ value_json.DHT11.humidity }}"
+
+# Температура с DHT11 Auto-poliv 
+    - unique_id: AP_DHT11_temp
+      name: "AP_DHT11_temp"
+      state_topic: "kvant/R22/BV/auto_poliv/sensor/data"
+      device_class: temperature
+      unit_of_measurement: "°C"
+      value_template: "{{ value_json.DHT11.temperature }}"
+      
+  switch:
+# Управление помпой 1 Auto-poliv  
+    - unique_id: AP_pump_1
+      name: "AP_pump_1"
+      command_topic: "kvant/R22/BV/auto_poliv/pompa_1/send_get"
+      state_topic: "kvant/R22/BV/auto_poliv/pompa_1/send_get"
+      payload_on: "on"
+      payload_off: "off"
+      retain: true
+      
+# Управление помпой 2 Auto-poliv  
+    - unique_id: AP_pump_2
+      name: "AP_pump_2"
+      command_topic: "kvant/R22/BV/auto_poliv/pompa_2/send_get"
+      state_topic: "kvant/R22/BV/auto_poliv/pompa_2/send_get"
+      payload_on: "on"
+      payload_off: "off"
+      retain: true
+      
+# Управление помпой 3 Auto-poliv  
+    - unique_id: AP_pump_3
+      name: "AP_pump_3"
+      command_topic: "kvant/R22/BV/auto_poliv/pompa_3/send_get"
+      state_topic: "kvant/R22/BV/auto_poliv/pompa_3/send_get"
+      payload_on: "on"
+      payload_off: "off"
+      retain: true
