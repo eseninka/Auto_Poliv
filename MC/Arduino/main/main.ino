@@ -53,7 +53,7 @@ GyverDS18Single ds1(temp_sens_pin[0]);
 GyverDS18Single ds2(temp_sens_pin[1]);
 GyverDS18Single ds3(temp_sens_pin[2]);
 
-DHT dht(25, DHT11);
+DHT dht(5, DHT11);
 
 Drewduino_I2CRelay_PCA95x5 relay;
 
@@ -66,7 +66,7 @@ void setup() {
   Serial.begin(115200);
   dht.begin();
   Wire.begin();
-  bmp.begin(0x76);
+  bmp.begin(0x77);
   aht.begin(&Wire, 0, 0x38);
   relay.begin(0x20, 8, Wire, false);  // addr, count, wire, activeLow
 
