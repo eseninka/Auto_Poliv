@@ -235,26 +235,26 @@ void callback(char* topic, byte* payload, unsigned int length) {
   if (String(topic) == mqtt_topic_sub_pomp1) {
     if (message == "on") {
       // вкл 1я помпа
-      relay.relaySet(1, 1);
+      relay.relaySet(6, 1);
     } else if (message == "off") {
       // выкл 1я помпа
-      relay.relaySet(1, 0);
+      relay.relaySet(6, 0);
     }
   } else if (String(topic) == mqtt_topic_sub_pomp2) {
     if (message == "on") {
       // вкл 2я помпа
-      relay.relaySet(2, 1);
+      relay.relaySet(7, 1);
     } else if (message == "off") {
       // выкл 2я помпа
-      relay.relaySet(2, 0);
+      relay.relaySet(7, 0);
     }
   } else if (String(topic) == mqtt_topic_sub_pomp3) {
     if (message == "on") {
       // вкл 3я помпа
-      relay.relaySet(3, 1);
+      relay.relaySet(8, 1);
     } else if (message == "off") {
       // выкл 3я помпа
-      relay.relaySet(3, 0);
+      relay.relaySet(8, 0);
     }
   }
 }
