@@ -10,6 +10,9 @@
 
 #define START_THIRD_POMP 14
 #define END_THIRD_POMP 21
+
+#define START_ALL_POMP 0
+#define END_ALL_POMP 21
 //--------------------------------------------------------Подключение библиотек и классов-------------------------------------------------------------------------------------------------------------------------------------------------------
 #include <WiFi.h>
 #include <PubSubClient.h>
@@ -42,16 +45,15 @@ const char* password = "ApoX51s42wR7FDK8";
 // const char* password = "6LpEL3nx";
 
 // Настройки MQTT
-const char* mqtt_server = "m5.wqtt.ru";
-const int mqtt_port = 14182;
-const char* mqtt_user = "Rasbery";
-const char* mqtt_pass = "154321";
+const char* mqtt_server = "m9.wqtt.ru";
+const int mqtt_port = 19778;
+const char* mqtt_user = "u_DZPAWC";
+const char* mqtt_pass = "S6jnFzZS";
 const char* mqtt_topic_sens_pub = "kvant/R22/BV/auto_poliv/sensor/data";
 const char* mqtt_topic_sub_pomp1 = "kvant/R22/BV/auto_poliv/pompa_1/send_get";
 const char* mqtt_topic_sub_pomp2 = "kvant/R22/BV/auto_poliv/pompa_2/send_get";
 const char* mqtt_topic_sub_pomp3 = "kvant/R22/BV/auto_poliv/pompa_3/send_get";
-
-
+const char* mqtt_topic_test_rele = "kvant/R22/BV/auto_poliv/pompa_all/send_get";
 
 unsigned long previousMillis = 0;  // время последней отправки
 const long interval = 5000;        // интервал 5 секунд (в миллисекундах)
@@ -183,6 +185,7 @@ void reconnectMQTT() {
     client.subscribe(mqtt_topic_sub_pomp1);
     client.subscribe(mqtt_topic_sub_pomp2);
     client.subscribe(mqtt_topic_sub_pomp3);
+    client.subscribe(mqtt_topic_test_rele);
   } else {
     Serial.print("Ошибка, rc=");
     Serial.println(client.state());
@@ -316,6 +319,22 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
       // выкл 3я помпа
       relay.relaySet(8, 0);
+
+    }} else if (String(topic) == mqtt_topic_test_rele) {  // ← ВЫНЕСЕНО НА ЭТОТ УРОВЕНЬ (НЕ ВНУТРЬ ПОМПЫ 3!)
+    // ВСЕ ПОМПЫ
+    if (message == "on") {
+      Serial.println("123321");
+      for (int pixel = START_ALL_POMP; pixel < END_ALL_POMP; pixel++) {
+        ws2812b.setPixelColor(pixel, ws2812b.Color(0, 0, 255));
+      }
+      ws2812b.show();
+      relay.allOn();  // ← Здесь relay.allOn()
+    } else if (message == "off") {
+      for (int pixel = START_ALL_POMP; pixel < END_ALL_POMP; pixel++) {
+        ws2812b.setPixelColor(pixel, ws2812b.Color(0, 255, 0));
+      }
+      ws2812b.show();
+      relay.allOff();
     }
   }
 }
